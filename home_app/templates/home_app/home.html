@@ -1,0 +1,40 @@
+{%  load static     %}
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحه اصلی</title>
+    <link rel="stylesheet" href="{%   static      "template/css/home.css"    %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <div class="container">
+        <!-- بخش هدینگ و دکمه‌ها -->
+        <header class="header">
+            <h1>TO    DO   LIST </h1>
+            <div class="actions">
+                <a href="{% url   "todolist_app:add" %}"><button class="btn">add_task</button></a>
+                
+                <a href="{%  url  "todolist_app:list_not_done" %}"><button class="btn">list_task_not_done</button></a> 
+                <a href="{%  url  "todolist_app:list_done" %}"><button class="btn">list_task_done</button></a> 
+
+
+            </div>
+        </header>
+
+        <!-- بخش عکس -->
+        <div class="image-container">
+            <img src="{% static  "template/images/plan.jpg"  %}"  width="500px" height="100px" alt="" class="feature-image">
+        </div>
+
+        <!-- پیام خوش‌آمدگویی -->
+        <div class="welcome-message">
+            <p>سلام! به صفحه برنامه ریزی آنلاین خوش آمدید.</p>
+        </div>
+    </div>
+</body>
+</html>

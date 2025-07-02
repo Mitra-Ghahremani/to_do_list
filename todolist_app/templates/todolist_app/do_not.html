@@ -1,0 +1,51 @@
+{%  load static  %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لیست تسک‌ها</title>
+    <link rel="stylesheet" href="{%  static  "template/css/list.css"   %}">
+    <!-- برای آیکون‌ها (اختیاری) -->
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+
+</head>
+<body>
+  
+
+    <div class="task-list">
+         <h1 >لیست تسک های انجام نشده</h1>
+         <br>
+         {% for task in list_task   %}
+        <div class="task-item">
+                     
+
+            <div class="task-content">
+               <br>
+                <div class="task-title">عنوان: {{task.title}}</div>
+                <div class="task-description">توضیح: {{task.description}}</div>
+            </div>
+            <div class="task-actions">
+                <button  class="task-btn delete-btn">
+                   <a href="{%  url "todolist_app:delete"  task.id  %}"> <i class="fas fa-trash"></i> حذف</a>
+                </button>
+
+               <button class="task-btn edit-btn">
+               <a href="{%  url  "todolist_app:edit" task.id  %}">  <i class="fas fa-edit"></i> ویرایش  </a>
+                </button>
+              
+                <button class="task-btn start-btn">
+                   <a href="{%  url  "todolist_app:start" task.id   %}"><i class="fas fa-play"></i> زمان شروع</a> 
+                </button>
+                <button class="task-btn end-btn">
+                <a href="{%  url    "todolist_app:end" task.id  %}"><i class="fas fa-stop"></i> زمان پایان</a>
+                </button>
+                <a href="{%  url  "todolist_app:complete_task"  task.id  %}"><button class="task-complete-btn">اتمام تسک</button></a> 
+            </div>
+        </div>
+         {%  endfor   %}
+    </div>
+</body>
+</html>

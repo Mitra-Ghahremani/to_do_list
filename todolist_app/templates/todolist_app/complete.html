@@ -1,0 +1,39 @@
+{%  load static    %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لیست تسک‌های انجام شده</title>
+    <link rel="stylesheet" href="{% static 'template/css/done.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title"><i class="fas fa-check-circle"></i> تسک‌های انجام شده</h1>
+            <h1 class="title"><i class="fas fa-check-circle"></i>کل زمان فعالیت:  {{total_time}} </h1>
+
+        </header>
+        
+        <div class="tasks-container">
+            {% for task, item in objects %}
+            <div class="task-card">
+                <div class="task-header">
+                    <span class="task-title">عنوان:
+                        {{ task.title }}</span>
+                </div>
+                <div class="task-body">
+                    <p class="task-description">توضیح:
+                        {{ task.description }}</p>
+                    <div class="task-details">
+                        <span class="detail-item"><i class="fas fa-info-circle"></i> مدت زمان:
+                            {{ item }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+/* تنظیمات پایه */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* استایل هدینگ */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.header h1 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn {
+    padding: 8px 16px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #2980b9;
+}
+
+/* استایل عکس */
+.image-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.feature-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    opacity: 0.7; /* برای نشان دادن کیفیت پایین */
+}
+
+/* استایل پیام خوش‌آمد */
+.welcome-message {
+    text-align: center;
+    padding: 15px;
+    background-color: #f1f8fe;
+    border-radius: 5px;
+    margin-top: 20px;
+    border-right: 3px solid #3498db;
+}
+
+.welcome-message p {
+    color: #2c3e50;
+    font-size: 18px;
+}
