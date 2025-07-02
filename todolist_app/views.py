@@ -49,14 +49,14 @@ def start_task(request,task_id):
     object=todolist.objects.get(id=task_id)
     object.datetime_start=datetime.now()
     object.save()
-    return render(request,"home_app/home.html")
+    return render(request,"home_app/index.html")
 
 
 def end_task(request,task_id):
      object=todolist.objects.get(id=task_id)
      object.datetime_end=datetime.now()
      object.save()
-     return render(request,"home_app/home.html")
+     return render(request,"home_app/index.html")
 
 
 
