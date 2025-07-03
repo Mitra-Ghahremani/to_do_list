@@ -96,3 +96,46 @@ body {
   .task-complete-btn:active {
     background-color: #1e7e34;
   } 
+/* کل بخش صفحه‌بندی رو وسط صفحه قرار می‌ده */
+.pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     /* تمام ارتفاع صفحه */
+}
+
+/* استایل داخلی صفحه‌بندی */
+.custom-pagination {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    font-family: sans-serif;
+    direction: rtl;
+}
+
+/* دکمه‌ها */
+.page-button {
+    padding: 8px 12px;
+    border: 1px solid #007bff;
+    color: #007bff;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 14px;
+}
+
+.page-button:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* صفحه فعلی */
+.page-number.active {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 14px;
+    border: 1px solid #007bff;
+}

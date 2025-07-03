@@ -1,59 +1,61 @@
 from django.shortcuts import render,redirect
-from . models import todolist
+from . models import Task
 from datetime import timedelta,datetime
+from django.core.paginator import Paginator
 
 def add_task(request):
     if request.method=="POST":
         title=request.POST.get("title")
         description=request.POST.get("description")
         obj=request.POST.get("id")
-        object=todolist.objects.all()
+        object=Task.objects.all()
         for item in object:
             if item.id ==obj:
-              todolist.save(title=title,description=description)
-        todolist.objects.create(title=title,description=description)
-        print(todolist)
+              Task.save(title=title,description=description)
+        Task.objects.create(title=title,description=description)
+        print(Task)
         return redirect("/plan")
     return render(request,"todolist_app/add.html",{})
 
 
 def list_task_not_done(request):
-    list_task=todolist.objects.filter(situation=False)
-    return render(request,"todolist_app/do_not.html",context={"list_task":list_task})
-   
-
+    list_task=Task.objects.filter(situation=False).order_by('-id') 
+    page=request.GET.get('page')
+    paginator=Paginator(list_task,4)
+    page_obj=paginator.get_page(page)
+    return render(request,"todolist_app/do_not.html",context={"page_obj":page_obj})
 def delete(request,task_id):
-    delete_object=todolist.objects.get(id=task_id)
+    delete_object=Task.objects.get(id=task_id)
     delete_object.delete()
     return redirect("/plan")
-
 
 
 def edit(request,task_id):
     if request.method=="POST":
           title=request.POST.get("title")
           description=request.POST.get("description")
-          object=todolist.objects.get(id=task_id)
+          object=Task.objects.get(id=task_id)
           object.title=title
           object.description=description
           object.save()
           return redirect("/plan")
 
-    object=todolist.objects.get(id=task_id)
+
+    object=Task.objects.get(id=task_id)
     title=object.title
     description=object.description
     return render (request,"todolist_app/edit.html",{"title":title,'description':description})
 
 
 def start_task(request,task_id):
-    object=todolist.objects.get(id=task_id)
+    object=Task.objects.get(id=task_id)
     object.datetime_start=datetime.now()
     object.save()
     return render(request,"home_app/index.html")
 
 
 def end_task(request,task_id):
-     object=todolist.objects.get(id=task_id)
+     object=Task.objects.get(id=task_id)
      object.datetime_end=datetime.now()
      object.save()
      return render(request,"home_app/index.html")
@@ -61,17 +63,17 @@ def end_task(request,task_id):
 
 
 def complete_task(request,task_id):
-    object=todolist.objects.get(id=task_id)
+    object=Task.objects.get(id=task_id)
     object.situation=True
     object.save()
-    list_task=todolist.objects.filter(situation=False)
+    list_task=Task.objects.filter(situation=False)
     return render(request,"todolist_app/do_not.html",context={"list_task":list_task})
     
 
 
 def list_task_done(request):
     durations=[]
-    objects=todolist.objects.filter(situation=True)
+    objects=Task.objects.filter(situation=True)
     for item in objects:
         start_time=item.datetime_start
         end_time=item.datetime_end

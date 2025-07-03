@@ -18,14 +18,15 @@
     <div class="task-list">
          <h1 >لیست تسک های انجام نشده</h1>
          <br>
-         {% for task in list_task   %}
+         {% for task in page_obj   %}
         <div class="task-item">
-                     
-
             <div class="task-content">
                <br>
+
                 <div class="task-title">عنوان: {{task.title}}</div>
+               
                 <div class="task-description">توضیح: {{task.description}}</div>
+
             </div>
             <div class="task-actions">
                 <button  class="task-btn delete-btn">
@@ -45,7 +46,23 @@
                 <a href="{%  url  "todolist_app:complete_task"  task.id  %}"><button class="task-complete-btn">اتمام تسک</button></a> 
             </div>
         </div>
-         {%  endfor   %}
-    </div>
+    {%  endfor   %}
+  
+
+    <div class="pagination-wrapper">
+   <div class="custom-pagination">
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}" class="page-button">«</a>
+    {% endif %}
+    
+       <span class="page-number active"> صفحه{{ page_obj.number }}</span>
+
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" class="page-button"> »    </a>
+    {% endif %}
+      </div>
+   </div>
+   </div>  
 </body>
 </html>
