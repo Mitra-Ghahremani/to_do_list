@@ -64,10 +64,14 @@ def end_task(request,task_id):
 
 def complete_task(request,task_id):
     object=Task.objects.get(id=task_id)
+    print(object)
     object.situation=True
     object.save()
-    list_task=Task.objects.filter(situation=False)
-    return render(request,"todolist_app/do_not.html",context={"list_task":list_task})
+    list_task=Task.objects.filter(situation=False).order_by('-id')
+    page=request.GET.get("page")
+    paginator=Paginator(list_task,4)
+    page_obj=paginator.get_page(page)
+    return render(request,"todolist_app/do_not.html",context={"page_obj":page_obj})
     
 
 
