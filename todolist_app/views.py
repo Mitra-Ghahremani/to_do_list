@@ -13,7 +13,7 @@ def add_task(request):
             if item.id ==obj:
               Task.save(title=title,description=description)
         Task.objects.create(title=title,description=description)
-        print(Task)
+      
         return redirect("/plan")
     return render(request,"todolist_app/add.html",{})
 
@@ -67,7 +67,7 @@ def complete_task(request,task_id):
     print(object)
     object.situation=True
     object.save()
-    list_task=Task.objects.filter(situation=False).order_by('-id')
+    list_task=Task.objects.filter(situation=False).order_by("-id")
     page=request.GET.get("page")
     paginator=Paginator(list_task,4)
     page_obj=paginator.get_page(page)
@@ -77,7 +77,9 @@ def complete_task(request,task_id):
 
 def list_task_done(request):
     durations=[]
-    objects=Task.objects.filter(situation=True)
+    objects=Task.objects.filter(situation=True).order_by("-id")
+    page=request.GET.get('page')
+    print("page:",page)
     for item in objects:
         start_time=item.datetime_start
         end_time=item.datetime_end
@@ -88,13 +90,10 @@ def list_task_done(request):
                   durations.append(duration)
         else:
           durations.append("زمان تسک ثبت نشده")
-    total_time=[]      
-    for item in durations:
-        if item !=("زمان تسک ثبت نشده"):
-          total_time.append(item)
-    total_time=sum(total_time,timedelta())
-    objects=zip(objects,durations)
-    return render(request,"todolist_app/complete.html",context={"objects":objects,"total_time":total_time})
+    objects=list(zip(objects,durations))
+    paginator=Paginator(objects,3)
+    page_obj=paginator.get_page(page)
+    return render(request,"todolist_app/complete.html",context={"page_obj":page_obj})
 
 
     

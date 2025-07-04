@@ -17,7 +17,7 @@
         </header>
         
         <div class="tasks-container">
-            {% for task, item in objects %}
+            {% for task,duration in page_obj %}
             <div class="task-card">
                 <div class="task-header">
                     <span class="task-title">عنوان:
@@ -28,12 +28,26 @@
                         {{ task.description }}</p>
                     <div class="task-details">
                         <span class="detail-item"><i class="fas fa-info-circle"></i> مدت زمان:
-                            {{ item }}</span>
+                            {{ duration }}</span>
+                          </div> 
                     </div>
                 </div>
-            </div>
+          
             {% endfor %}
-        </div>
-    </div>
+    <div class="pagination-wrapper">
+    <div class="custom-pagination">   
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}" class="page-button">«</a>
+    {% endif %}
+    
+       <span class="page-number active"> صفحه{{ page_obj.number }}</span>
+
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" class="page-button"> » </a>
+    {% endif %}
+     </div>
+   </div>
+  </div>
 </body>
 </html>
