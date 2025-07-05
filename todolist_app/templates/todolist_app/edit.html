@@ -17,8 +17,18 @@
         <br>
         <form method="post" action="#">
             {% csrf_token  %}
+               <div>
+                <label for="category">لطفا دسته بندی را انتخاب کنید:</label>
+                <select name="category" id="category">
 
-           {%  if title  or description    %}
+                    {%  for category in categories   %}  
+                <option    value="{{category.id}}"{%  if category.id == category_id  %} selected {% endif %} >{{category.name}}</option>
+                      {% endfor  %} 
+                </select>
+                </div>
+
+
+              {%  if title  or description   %}
                  <div class="form-group">
                 <label for="title">لطفا عنوان تسک را ویرایش کنید :</label>
                 <input type="text"   value="{{title}}" id="title" name="title" required>
@@ -32,7 +42,6 @@
             <button type="submit">ثبت ویرایش تسک</button>
         </form>
     </div>
-        
         {%  else  %}
             <div class="form-group">
                 <label for="title">لطفا عنوان تسک را ویرایش کنید: </label>

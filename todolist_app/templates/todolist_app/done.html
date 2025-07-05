@@ -12,6 +12,7 @@
     <div class="container">
         <header class="header">
             <h1 class="title"><i class="fas fa-check-circle"></i> تسک‌های انجام شده</h1>
+        {% if page_obj %}
             <h1 class="title"><i class="fas fa-check-circle"></i>کل زمان فعالیت:  {{total_time}} </h1>
 
         </header>
@@ -19,13 +20,17 @@
         <div class="tasks-container">
             {% for task,duration in page_obj %}
             <div class="task-card">
-                <div class="task-header">
-                    <span class="task-title">عنوان:
-                        {{ task.title }}</span>
+                <div class="task-header" >
+                <div class="task-category mb-3"><span  class="badge bg-primary rounded-pill">دسته‌بندی: {{ task.category.name }}</span>  </div>
+                    
+                    <span class="task-title">عنوان: {{ task.title }}</span>
                 </div>
                 <div class="task-body">
-                    <p class="task-description">توضیح:
-                        {{ task.description }}</p>
+                    {%  if task.description  %}
+                    <p class="task-description">توضیح: {{ task.description }} </p>
+                    {%  else %}
+                  <p class="task-description">توضیح: ------------------- </p>
+                  {% endif %}
                     <div class="task-details">
                         <span class="detail-item"><i class="fas fa-info-circle"></i> مدت زمان:
                             {{ duration }}</span>
@@ -47,7 +52,11 @@
         <a href="?page={{ page_obj.next_page_number }}" class="page-button"> » </a>
     {% endif %}
      </div>
+
    </div>
+   {%  else  %}
+   <p>در حال حاضر تسکی اتمام نیافته</p>
+  {% endif  %}
   </div>
 </body>
 </html>

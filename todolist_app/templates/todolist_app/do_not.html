@@ -18,15 +18,20 @@
     <div class="task-list">
          <h1 >لیست تسک های انجام نشده</h1>
          <br>
+         {% if page_obj  %}
          {% for task in page_obj   %}
         <div class="task-item">
             <div class="task-content">
                <br>
-
+                <div class="task-title">دسته بندی: {{task.category.name}}</div>
                 <div class="task-title">عنوان: {{task.title}}</div>
-               
-                <div class="task-description">توضیح: {{task.description}}</div>
-
+               <div>
+                {%  if task.description  %}
+                <p class="task-description">توضیح: {{ task.description }} </p>
+                {%  else %}
+                <p class="task-description">توضیح: ------------------- </p>
+                {% endif %}
+                </div>
             </div>
             <div class="task-actions">
                 <button  class="task-btn delete-btn">
@@ -61,6 +66,11 @@
     {% if page_obj.has_next %}
         <a href="?page={{ page_obj.next_page_number }}" class="page-button"> »    </a>
     {% endif %}
+   {% else %}
+   <br>
+  <p>تسکی اضافه نشده است</p>
+   {%  endif  %}
+
       </div>
    </div>
    </div>  

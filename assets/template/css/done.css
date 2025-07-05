@@ -61,6 +61,23 @@ body {
     background-color: #f8f9fa;
     border-bottom: 1px solid #e1e5eb;
 }
+.task-category {
+    font-family: 'Vazir', Tahoma, sans-serif; /* فونت فارسی */
+    direction: rtl; /* جهت متن راست به چپ */
+    margin-bottom: 1rem; /* فاصله از المان بعدی */
+}
+
+.task-category .badge {
+    font-size: 0.9rem; /* اندازه فونت */
+    padding: 0.5em 0.75em; /* padding داخلی */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* سایه ملایم */
+    transition: all 0.3s ease; /* انیمیشن hover */
+}
+
+.task-category .badge:hover {
+    transform: translateY(-2px); /* حرکت کوچک هنگام hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* سایه بیشتر هنگام hover */
+}
 
 .task-title {
     font-weight: bold;

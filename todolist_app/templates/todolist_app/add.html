@@ -18,9 +18,19 @@
         <form method="post" action="#">
             {% csrf_token  %}
             <div class="form-group">
+
+                <div>
+                <label for="category">لطفا دسته بندی را انتخاب کنید:</label>
+                <select name="category" id="category">
+                  {%  for category in categories  %} 
+                 <option value="{{category.id}}">{{category.name}}</option>
+                  {% endfor %}
+                </select>
+                </div>
+                <div>
                 <label for="title">لطفا عنوان تسک را وارد کنید :</label>
                 <input type="text" id="title" name="title">
-            </div>
+               </div>
             
             <div class="form-group">
                 <label for="description">لطفا توضیحات تسک را وارد کنید:</label>
